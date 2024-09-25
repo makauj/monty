@@ -2,9 +2,17 @@
 #define MAIN_H
 
 #include <stdio.h>
-#include <stderr.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#define EXIT_FAILURE 1
+#define STACK 0
+#define QUEUE 1
+#define DELIMS " \n\t\a\b"
 
 
 /**
@@ -18,9 +26,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -33,8 +41,22 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/* OPCODE functions */
+void monty_push(stack_t **stack, unsigned int line_number);
+void monty_pall(stack_t **stack, unsigned int line_number);
+void monty_pint(stack_t **stack, unsigned int line_number);
+void monty_pop(stack_t **stack, unsigned int line_number);
+void monty_swap(stack_t **stack, unsigned int line_number);
+void monty_add(stack_t **stack, unsigned int line_number);
+void monty_nop(stack_t **stack, unsigned int line_number);
+
+
+/* HELPER FUNCTIONS*/
+void handle_error(unsigned int line_num, const char *message);
+void free_stack(stack_t *stack);
 
 #endif /* MAIN_H */

@@ -3,7 +3,7 @@
 /**
  * monty_mod - opcode to multiply the top 2 elements of a stack
  * @stack: A pointer to the top of a stack
- * @line_value: current working position
+ * @line_number: current working position
  */
 
 void monty_mod(stack_t **stack, unsigned int line_number)

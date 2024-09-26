@@ -3,7 +3,7 @@
 /**
  * monty_push - function to add a value to a list
  * @stack: A pointer to the top of a stack
- * @line_value: current working position
+ * @line_number: current working position
  */
 
 void monty_push(stack_t **stack, unsigned int line_number)

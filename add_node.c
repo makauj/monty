@@ -5,6 +5,8 @@
  * @stack: double pointer to the beginning of the circular linked list
  * @n: value to add to the new node
  *
+ * Return: 0
+ *
  */
 stack_t *add_node(stack_t **stack, int n)
 {

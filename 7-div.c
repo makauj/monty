@@ -3,7 +3,7 @@
 /**
  * monty_div - opcode to divide first 2 elements in a stack
  * @stack: A pointer to the top of a stack
- * @line_value: current working position
+ * @line_number: current working position
  */
 
 void monty_div(stack_t **stack, unsigned int line_number)

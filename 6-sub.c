@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * monty-sub - opcaoe to subtract the first 2 elements in a stack
+ * monty_sub - opcode to subtract the first 2 elements in a stack
  * @stack: A pointer to the top of a stack
- * @line_value: current working position
+ * @line_number: current working position
  */
 
 void monty_sub(stack_t **stack, unsigned int line_number)

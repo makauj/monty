@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <ctype.h>
 
-
+#define BUFFER 1024
 /**
  * struct bus_s - variables -args, file, line content
  * @arg: value
@@ -26,6 +26,7 @@ typedef struct bus_s
 	char *content;
 	int lifi;
 }  bus_t;
+
 extern bus_t bus;
 
 /**

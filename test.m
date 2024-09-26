@@ -7,6 +7,7 @@ pall        # Prints all elements (3, 10, 5)
 add         # Adds top two elements (3 + 10 = 13), new top: 13
 pint        # Prints the top element (13)
 push 8      # Pushes 8 onto the stack
+pall
 sub         # Subtracts top two elements (13 - 8 = 5), new top: 5
 pall        # Prints all elements (5, 5)
 push 2      # Pushes 2 onto the stack

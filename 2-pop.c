@@ -8,17 +8,17 @@
 
 void monty_pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current = *stack;
+	stack_t *h;
 
-	if (current != NULL)
+	if (*stack == NULL)
 	{
-		handle_error(line_number, "can't pop an empty stack");
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
-
-	current = current->next;
-	if (current)
-	{
-		current->prev = NULL;
-	}
-	free(current);
+	h = *stack;
+	*stack = h->next;
+	free(h);
 }

@@ -8,23 +8,22 @@
 
 void monty_rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top_node = *stack;
-	stack_t *last_node;
+	stack_t *copy;
 
 	(void)line_number;
 
-	if (!top_node || !top_node->next)
-		return;
-
-	while (last_node->next)
+	copy = *stack;
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		last_node = last_node->next;
+		return;
 	}
-
-	last_node->prev->next = NULL;
-	last_node->prev = NULL;
-	last_node->next = top_node;
-	top_node->prev = last_node;
-
-	*stack = last_node;
+	while (copy->next)
+	{
+		copy = copy->next;
+	}
+	copy->next = *stack;
+	copy->prev->next = NULL;
+	copy->prev = NULL;
+	(*stack)->prev = copy;
+	(*stack) = copy;
 }

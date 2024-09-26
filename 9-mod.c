@@ -8,29 +8,34 @@
 
 void monty_mod(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top_node = *stack;
-	stack_t *next_node;
+	stack_t *h;
+	int len = 0, aux;
 
-	if (!top_node || !top_node->next)
-		handle_error(line_number, "can't mod, stack too short");
-
-	if (top_node->n == 0)
+	h = *stack;
+	while (h)
 	{
-		handle_error(line_number, "division by zero");
+		h = h->next;
+		len++;
 	}
-
-	next_node = top_node->next;
-
-	next_node->n %=top_node->n;
-
-	*stack = next_node;
-	next_node->prev = NULL;
-	next_node->next = top_node->next;
-
-	if (top_node->next)
+	if (len < 2)
 	{
-		top_node->next->prev = next_node;
+		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
-
-	free(top_node);
+	h = *stack;
+	if (h->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
+	}
+	aux = h->next->n % h->n;
+	h->next->n = aux;
+	*stack = h->next;
+	free(h);
 }

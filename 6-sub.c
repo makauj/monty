@@ -8,22 +8,23 @@
 
 void monty_sub(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top_node = *stack;
-	stack_t *next_node;
+	stack_t *aux;
+	int sus, nodes;
 
-	if (!top_node || !top_node->next)
-		handle_error(line_number, "can't sub, stack too short");
-
-	next_node = top_node->next;
-	next_node->n -= top_node->n;
-
-	*stack = next_node;
-	next_node->next = top_node->next;
-
-	if (top_node->next)
+	aux = *stack;
+	for (nodes = 0; aux != NULL; nodes++)
+		aux = aux->next;
+	if (nodes < 2)
 	{
-		top_node->next->prev = next_node;
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
-
-	free(top_node);
+	aux = *stack;
+	sus = aux->next->n - aux->n;
+	aux->next->n = sus;
+	*stack = aux->next;
+	free(aux);
 }

@@ -8,23 +8,25 @@
 
 void monty_swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top_node = *stack;
-	stack_t *next_node;
+	stack_t *h;
+	int len = 0, aux;
 
-	if (!top_node || !top_node->next)
+	h = *stack;
+	while (h)
 	{
-		handle_error(line_number, "can't swap, stack too short");
+		h = h->next;
+		len++;
 	}
-	next_node = top_node->next;
-	top_node->next = next_node->next;
-	next_node->prev = NULL;
-
-	if (top_node->next)
+	if (len < 2)
 	{
-		top_node->next->prev = top_node;
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
-	next_node->next = top_node;
-	top_node->prev = next_node;
-
-	*stack = next_node;
+	h = *stack;
+	aux = h->n;
+	h->n = h->next->n;
+	h->next->n = aux;
 }

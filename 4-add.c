@@ -7,24 +7,26 @@
  */
 void monty_add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top_node = *stack;
-	stack_t *next_node;
+	stack_t *h;
+	int len = 0, aux;
 
-	if (!top_node || !top_node->next)
+	h = *stack;
+	while (h)
 	{
-		handle_error(line_number, "can't add, stack too short");
+		h = h->next;
+		len++;
 	}
-
-	next_node = top_node->next;
-	next_node->n += top_node->n;
-
-	*stack = next_node;
-	next_node->next = top_node->next;
-
-	if (top_node->next)
+	if (len < 2)
 	{
-		top_node->next->prev = next_node;
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
-
-	free(top_node);
+	h = *stack;
+	aux = h->n + h->next->n;
+	h->next->n = aux;
+	*stack = h->next;
+	free(h);
 }

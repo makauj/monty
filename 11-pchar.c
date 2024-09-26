@@ -8,20 +8,24 @@
 
 void monty_pchar(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top_node = *stack;
-	int ascii_value;
+	stack_t *h;
 
-	if (!top_node)
+	h = *stack;
+	if (!h)
 	{
-		handle_error(line_number, "can't pchar, stack empty");
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
-
-	ascii_value = top_node->n;
-
-	if (ascii_value < 0 || ascii_value > 127)
+	if (h->n > 127 || h->n < 0)
 	{
-		handle_error(line_number, "can't pchar, calue out of range");
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
-
-	printf("%c\n", (char)ascii_value);
+	printf("%c\n", h->n);
 }

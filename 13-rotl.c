@@ -6,29 +6,24 @@
  * @line_number: position of current operation
  */
 
-void monty_rotl(stack_t **stack, unsigned int list_number)
+void monty_rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top_node = *stack;
-	stack_t *second_node, *last_node;
+	stack_t *tmp = *stack, *aux;
 
-	(void)list_number;
+	(void)line_number;
 
-	if (!top_node || !top_node->next)
-		return;
-
-	second_node = top_node->next;
-	top_node->next = NULL;
-	second_node->prev = NULL;
-
-	last_node = second_node;
-
-	while (last_node->next)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		last_node = last_node->next;
+		return;
 	}
-
-	last_node->next = top_node;
-	top_node->prev = last_node;
-
-	*stack = second_node;
+	aux = (*stack)->next;
+	aux->prev = NULL;
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = *stack;
+	(*stack)->next = NULL;
+	(*stack)->prev = tmp;
+	(*stack) = aux;
 }

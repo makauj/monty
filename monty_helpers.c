@@ -1,29 +1,71 @@
 #include "main.h"
 
 /**
- * free_stack - function to free memory
- * @stack: pointer to the top of a stack
- */
+* free_stack - frees a doubly linked list
+* @stack: head of the stack
+*/
 void free_stack(stack_t *stack)
 {
-	stack_t *current = stack;
-	stack_t *temp;
+	stack_t *aux;
 
-	while (current)
+	aux = stack;
+	while (stack)
 	{
-		temp = current;
-		current = current->next;
-		free(temp);
+		aux = stack->next;
+		free(stack);
+		stack = aux;
 	}
 }
 
 /**
- * handle_error - error handling function
- * @line_num: line number being executed
- * @message: message to display
- */
-void handle_error(unsigned int line_num, const char *message)
+* execute - executes the opcode
+* @stack: head linked list - stack
+* @counter: line_counter
+* @file: poiner to monty file
+* @content: line content
+* Return: no return
+*/
+int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
 {
-	fprintf(stderr, "L%u: %s\n", line_num, message);
-	exit(EXIT_FAILURE);
+	instruction_t opst[] = {
+				{"push", monty_push}, {"pall", monty_pall}, {"pint", monty_pint},
+				{"pop", monty_pop},
+				{"swap", monty_swap},
+				{"add", monty_add},
+				{"nop", monty_nop},
+				{"sub", monty_sub},
+				{"div", monty_div},
+				{"mul", monty_mul},
+				{"mod", monty_mod},
+				{"pchar", monty_pchar},
+				{"pstr", monty_pstr},
+				{"rotl", monty_rotl},
+				{"rotr", monty_rotr},
+				{"queue", monty_queue},
+				{"stack", monty_stack},
+				{NULL, NULL}
+				};
+	unsigned int i = 0;
+	char *op;
+
+	op = strtok(content, " \n\t");
+	if (op && op[0] == '#')
+		return (0);
+	bus.arg = strtok(NULL, " \n\t");
+	
+	while (opst[i].opcode && op)
+	{
+		if (strcmp(op, opst[i].opcode) == 0)
+		{	opst[i].f(stack, counter);
+			return (0);
+		}
+		i++;
+	}
+	if (op && opst[i].opcode == NULL)
+	{ fprintf(stderr, "L%d: unknown instruction %s\n", counter, op);
+		fclose(file);
+		free(content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE); }
+	return (1);
 }

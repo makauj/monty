@@ -8,24 +8,19 @@
 
 void monty_pstr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current = *stack;
-	char character;
-	int av;
+	stack_t *h;
 
 	(void)line_number;
 
-	if (!current)
-		return;
-	while (current)
+	h = *stack;
+	while (h)
 	{
-		av = current->n;
-		if (av == 0 || av < 0 || av > 127)
+		if (h->n > 127 || h->n <= 0)
+		{
 			break;
-
-		character = (char)av;
-		printf("%c", character);
-
-		current = current->next;
+		}
+		printf("%c", h->n);
+		h = h->next;
 	}
 	printf("\n");
 }

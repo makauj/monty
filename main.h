@@ -10,11 +10,23 @@
 #include <fcntl.h>
 #include <ctype.h>
 
-#define EXIT_FAILURE 1
-#define STACK 0
-#define QUEUE 1
-#define DELIMS " \n\t\a\b"
 
+/**
+ * struct bus_s - variables -args, file, line content
+ * @arg: value
+ * @file: pointer to monty file
+ * @content: line content
+ * @lifi: flag change stack <-> queue
+ * Description: carries values through the program
+ */
+typedef struct bus_s
+{
+	char *arg;
+	FILE *file;
+	char *content;
+	int lifi;
+}  bus_t;
+extern bus_t bus;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -62,9 +74,16 @@ void monty_pchar(stack_t **stack, unsigned int line_number);
 void monty_pstr(stack_t **stack, unsigned int line_number);
 void monty_rotl(stack_t **stack, unsigned int line_number);
 void monty_rotr(stack_t **stack, unsigned int line_number);
+void monty_stack(stack_t **stack, unsigned int line_number);
+void monty_queue(stack_t **stack, unsigned int line_number);
 
 /* HELPER FUNCTIONS*/
-void handle_error(unsigned int line_num, const char *message);
+stack_t *add_node(stack_t **stack, int n);
+char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
+ssize_t getstdin(char **lineptr, int file);
+char  *clean_line(char *content);
+void addqueue(stack_t **stack, int n);
 void free_stack(stack_t *stack);
+int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
 
 #endif /* MAIN_H */

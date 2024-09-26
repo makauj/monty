@@ -8,14 +8,15 @@
 
 void monty_push(stack_t **stack, unsigned int line_value)
 {
-	long val;
+	int n;
 	stack_t *new_node = malloc(sizeof(stack_t));
-	char *endptr;
+	char *value = NULL;
 
-	if (*endptr != '\0')
+	if (!value || !isdigit(value[0]))
 	{
 		handle_error(line_value, "usage: push integer");
 	}
+	n = atoi(value);
 
 	if (!new_node)
 	{
@@ -23,7 +24,7 @@ void monty_push(stack_t **stack, unsigned int line_value)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = (int)val;
+	new_node->n = n;
 	new_node->next = *stack;
 	new_node->prev = NULL;
 	if (*stack)
@@ -31,25 +32,4 @@ void monty_push(stack_t **stack, unsigned int line_value)
 		(*stack)->prev = new_node;
 	}
 	*stack = new_node;
-}
-
-/**
- * monty_pall - prints the values of a stack
- * @stack: pointer to the top of a stack
- * @line_number: position of current operation
- *
- * Return: void
- */
-
-void monty_pall(stack_t **stack, unsigned int line_number)
-{
-	stack_t *head = *stack;
-
-	(void)(line_number);
-
-	while (head)
-	{
-		printf("%d\n", head->n);
-		head = head->next;
-	}
 }

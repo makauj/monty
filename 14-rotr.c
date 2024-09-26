@@ -11,6 +11,8 @@ void monty_rotr(stack_t **stack, unsigned int line_number)
 	stack_t *top_node = *stack;
 	stack_t *last_node;
 
+	(void)line_number;
+
 	if (!top_node || !top_node->next)
 		return;
 

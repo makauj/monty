@@ -11,18 +11,25 @@ int main(int argc, char *argv[])
 {
     stack_t *stack = NULL;
     char *command = NULL;
-    size_t len = 0;
     unsigned int line_number = 1;
     char *token, *endptr;
     long value;
+    FILE *file;
 
-    if (argc != 1)
+    if (argc != 2)
     {
         fprintf(stderr, "USAGE: monty file\n");
         exit(EXIT_FAILURE);
     }
 
-    while (getline(&command, &len, stdin) != -1)
+    file = fopen(argv[1], "r");
+    if (!file)
+    {
+	    fprintf(stderr, "Error: can't open file %s\n", argv[1]);
+	    exit(EXIT_FAILURE);
+    }
+
+    while (fgets(command, sizeof(command), stdin) != NULL)
     {
         token = strtok(command, DELIMS);
         if (token == NULL)
@@ -42,6 +49,7 @@ int main(int argc, char *argv[])
                 handle_error(line_number, "usage: push integer");
 
             monty_push(&stack, line_number);
+	    stack->n = value;
         }
         else if (strcmp(token, "pall") == 0)
         {
@@ -109,5 +117,6 @@ int main(int argc, char *argv[])
 
     free(command);
     free_stack(stack);
+    fclose(file);
     return (EXIT_SUCCESS);
 }

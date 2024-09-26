@@ -9,7 +9,6 @@
 void monty_swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top_node = *stack;
-	stack_t *temp;
 	stack_t *next_node;
 
 	if (!top_node || !top_node->next)

@@ -11,6 +11,8 @@ void monty_rotl(stack_t **stack, unsigned int list_number)
 	stack_t *top_node = *stack;
 	stack_t *second_node, *last_node;
 
+	(void)list_number;
+
 	if (!top_node || !top_node->next)
 		return;
 

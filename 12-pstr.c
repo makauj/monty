@@ -12,6 +12,8 @@ void monty_pstr(stack_t **stack, unsigned int line_number)
 	char character;
 	int av;
 
+	(void)line_number;
+
 	if (!current)
 		return;
 	while (current)

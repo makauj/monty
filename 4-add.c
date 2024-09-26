@@ -12,7 +12,7 @@ void monty_add(stack_t **stack, unsigned int line_number)
 
 	if (!top_node || !top_node->next)
 	{
-		print_error(line_number, "can't add, stack too short");
+		handle_error(line_number, "can't add, stack too short");
 	}
 
 	next_node = top_node->next;

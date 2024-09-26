@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
             if (*endptr != '\0')
                 handle_error(line_number, "usage: push integer");
 
-            monty_push(&stack, line_number, (int)value);
+            monty_push(&stack, line_number);
         }
         else if (strcmp(token, "pall") == 0)
         {

@@ -23,7 +23,6 @@ void monty_push(stack_t **stack, unsigned int line_value)
 		exit(EXIT_FAILURE);
 	}
 
-	val = strtol(token, &endptr, 10);
 	new_node->n = (int)val;
 	new_node->next = *stack;
 	new_node->prev = NULL;

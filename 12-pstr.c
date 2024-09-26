@@ -21,9 +21,9 @@ void monty_pstr(stack_t **stack, unsigned int line_number)
 			break;
 
 		character = (char)av;
-		print("%c", character);
+		printf("%c", character);
 
 		current = current->next;
 	}
-	print("\n")
+	printf("\n");
 }

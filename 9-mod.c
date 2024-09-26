@@ -15,7 +15,7 @@ void monty_mod(stack_t **stack, unsigned int line_number)
 		handle_error(line_number, "can't mod, stack too short");
 
 	if (top_node->n = 0)
-		handle_error(line_number, "division by zero")
+		handle_error(line_number, "division by zero");
 	next_node = top_node->next;
 
 	next_node->n %=top_node->n;

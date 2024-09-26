@@ -20,7 +20,7 @@ void monty_rotl(stack_t **stack, unsigned int list_number)
 
 	last_node = second_node;
 
-	while (last_node->next);
+	while (last_node->next)
 	{
 		last_node = last_node->next;
 	}

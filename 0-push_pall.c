@@ -8,7 +8,7 @@
 
 void monty_push(stack_t **stack, unsigned int line_value)
 {
-	int val;
+	long val;
 	stack_t *new_node = malloc(sizeof(stack_t));
 	char *endptr;
 
@@ -23,7 +23,8 @@ void monty_push(stack_t **stack, unsigned int line_value)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = val;
+	val = strtol(token, &endptr, 10);
+	new_node->n = (int)val;
 	new_node->next = *stack;
 	new_node->prev = NULL;
 	if (*stack)

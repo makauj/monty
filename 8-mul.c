@@ -1,4 +1,4 @@
-#include "monty.h"
+#include "main.h"
 
 /**
  * monty_mul - opcode to multiply the top 2 elements of a stack
@@ -21,7 +21,6 @@ void monty_mul(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 		fclose(bus.file);
-		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}

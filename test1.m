@@ -1,2 +1,3 @@
 push 1
-ppo
+push 2
+swap

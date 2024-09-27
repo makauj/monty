@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * monty_pint - function prints value at the top of a stack

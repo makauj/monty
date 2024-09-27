@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * monty_mul - opcode to multiply the top 2 elements of a stack

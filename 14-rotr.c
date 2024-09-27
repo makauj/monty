@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * monty_rotr - Opcode that rorates the stack to the bottom

@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -87,4 +87,4 @@ void addqueue(stack_t **stack, int n);
 void free_stack(stack_t *stack);
 int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
 
-#endif /* MAIN_H */
+#endif /* MONTY_H */

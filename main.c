@@ -1,6 +1,5 @@
-#include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "monty.h"
+
 bus_t bus = {NULL, NULL, NULL, 0};
 #define BUFFER 1024
 

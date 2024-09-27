@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * monty_sub - opcode to subtract the first 2 elements in a stack

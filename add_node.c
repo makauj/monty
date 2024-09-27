@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * add_node - add a new node to a circular linked list

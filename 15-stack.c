@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * monty_stack - sets the format of the data to a queue (FIFO)
